@@ -8,7 +8,14 @@ import           Data.Sequence (Seq, (|>))
 import           System.Random (StdGen, randoms)
 
 
+{- | Represents type of cell. Each cell can be one of multiple types:
+* @Path@  -- Regular cell with no special meaning 
+* @Start@ -- Start of maze
+* @End@   -- End of maze, finish
+-}
 data CellType = Path | Start | End deriving (Show)
+
+-- Directions used for navigating through the maze
 data Direction = TopD | RightD | BottomD | LeftD deriving (Show)
 
 -- Location in 'Maze'
@@ -34,7 +41,8 @@ data Maze = Maze
     deriving (Show)
 
 
-{- | Utility for generating mazes. Contains
+{- | Utility for generating mazes. Contains 'Maze' that is being built, random number
+generator and stack with 'Location' to keep track of cells that have not been used yet 
 -}
 data Generator = Generator
     { gStack :: Seq Location
