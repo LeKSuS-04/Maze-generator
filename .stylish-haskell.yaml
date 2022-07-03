@@ -1,0 +1,50 @@
+# stylish-haskell configuration file
+# ==================================
+
+steps:
+  # Align the right hand side of some elements.  This is quite conservative
+  # and only applies to statements where each element occupies a single
+  # line.
+  - simple_align:
+      cases: always
+      top_level_patterns: always
+      records: always
+      multi_way_if: always
+
+  # Import cleanup
+  - imports:
+      align: global
+      list_align: after_alias
+      pad_module_names: true
+      long_list_align: inline
+      empty_list_align: inherit
+      list_padding: 4
+      separate_lists: true
+      space_surround: false
+      post_qualify: false
+
+  # Language pragmas
+  - language_pragmas:
+      style: vertical
+      align: true
+      remove_redundant: true
+      language_prefix: LANGUAGE
+
+  # Replace tabs by spaces. This is disabled by default.
+  - tabs:
+      spaces: 4
+
+  # Remove trailing whitespace
+  - trailing_whitespace: {}
+
+# A common setting is the number of columns (parts of) code will be wrapped
+# to. Different steps take this into account.
+columns: 90
+
+# By default, line endings are converted according to the OS. You can override
+# preferred format here.
+newline: native
+
+# Attempt to find the cabal file in ancestors of the current directory, and
+# parse options (currently only language extensions) from that.
+cabal: true
