@@ -1,3 +1,3 @@
-# Labyrinth-generator
+# Maze-generator
 
 :building_construction: Under construction
