@@ -14,16 +14,16 @@ end of process all cells of 'Maze' will be in use. It will not work only if the
 'Generator' @g@ wasn't configured properly before being passed in this function.
 -}
 growBranches :: Generator -> Generator
-growBranches g@(Generator stack rng m) =
-    if null stack then g
-    else case newDirection of
-        Nothing -> growBranches g' { gStack = tail stack }
-        Just d  -> let new = travel (head stack) d
-                   in growBranches g' { gStack = new:stack
-                                      , gMaze = updateCell (head stack) d $ addCell new m
+growBranches g@(Generator [] _ _) = g
+growBranches g@(Generator (l:ls) rng m) =
+    case newDirection of
+        Nothing -> growBranches g' { gStack = ls }
+        Just d  -> let new = travel l d
+                   in growBranches g' { gStack = new:l:ls
+                                      , gMaze = updateCell l d $ addCell new m
                                       }
   where
-    (g'@Generator {gMaze=m'}, newDirection) = getRandomNonCellDirection g (head stack)
+    (g'@Generator {gMaze=m'}, newDirection) = getRandomNonCellDirection g l
 
 
 {- | 'getRandomNonCellDirection' @g l@ tries to pick random avaliable direction from
