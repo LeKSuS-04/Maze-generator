@@ -26,7 +26,7 @@ executable maze-generator
     other-modules:    Generator
                     , Generator.Branching
                     , Generator.Core
-                    , Generator.Initial
+                    , Generator.Init
                     , Generator.Random
                     , Generator.Util
 

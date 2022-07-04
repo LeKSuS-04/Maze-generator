@@ -1,7 +1,6 @@
 module Generator.Core where
 
-import           Data.Map          (Map)
-import           Data.Sequence     (Seq)
+import           Data.Map (Map)
 
 {- | Represents type of cell. Each cell can be one of multiple types:
 * @Path@  -- Regular cell with no special meaning
@@ -41,7 +40,7 @@ data Maze = Maze
 generator and stack with 'Location' to keep track of cells that have not been used yet
 -}
 data Generator = Generator
-    { gStack :: Seq Location
+    { gStack :: [Location]
     , gRng   :: [Int]
     , gMaze  :: Maze
     }
