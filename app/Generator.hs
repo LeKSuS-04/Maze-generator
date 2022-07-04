@@ -1,4 +1,4 @@
-module Generator where
+module Generator (generateMaze) where
 
 import qualified Data.Map            as M
 
@@ -13,8 +13,8 @@ import           Generator.Util      (addCell)
 {- | 'generateLabyrinth' @rng w h@ generates labyrinth of width @w@ and height @h@,
 utilizing specified random number generator in process.
 -}
-generateLabyrinth :: StdGen -> Int -> Int -> Maze
-generateLabyrinth rng w h = gMaze $ generateBranches $ createInitialPath
+generateMaze :: StdGen -> Int -> Int -> Maze
+generateMaze rng w h = gMaze $ generateBranches $ createInitialPath
     Generator
     { gStack = fillLocationStack w h
     , gRng = randoms rng
