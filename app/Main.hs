@@ -1,7 +1,6 @@
 module Main where
 
 import           System.Random (getStdGen)
-
 import           Generator     (generateLabyrinth)
 
 main :: IO ()
