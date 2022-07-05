@@ -17,7 +17,7 @@ maintainer:         tarasovion2004@gmail.com
 -- A copyright notice.
 -- copyright:
 -- category:
-extra-source-files: CHANGELOG.md
+-- extra-source-files: CHANGELOG.md
 
 executable maze-generator
     main-is:          Main.hs
@@ -32,9 +32,9 @@ executable maze-generator
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base ^>=4.14.3.0
-                    , containers
-                    , array
-                    , random
+    build-depends:    base       ^>=4.14.3.0
+                    , containers ^>=0.6.5.1
+                    , array      ^>=0.5.4.0
+                    , random     ^>=1.2.1.1
     hs-source-dirs:   app
     default-language: Haskell2010
