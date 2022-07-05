@@ -6,10 +6,9 @@ import           Data.Map         (Map)
 import           Data.Maybe       (isNothing)
 import           System.Random    (StdGen, randoms)
 
-import           Generator.Core
+import           Generator.Core   (Generator (..), Location (Location), Maze (..))
 import           Generator.Random (chooseRandom)
-import           Generator.Util   (addCell, getFreeDirections, oppositeDirection, travel,
-                                   updateCell)
+import           Generator.Util   (addCell, getFreeDirections, updateCell)
 
 {- | 'initGenerator' @rng w h@ initializes 'Generator' with 'Maze' of width @w@ and
 height @h@. Also creates 'Cell' at 'Location' @(0, 0)@ that acts as a starting cell

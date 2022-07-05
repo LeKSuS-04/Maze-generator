@@ -2,9 +2,9 @@ module Generator.Branching (growBranches) where
 
 import           Data.Maybe       (isNothing)
 
-import           Generator.Core   (Direction, Generator (..), Location)
+import           Generator.Core   (Direction, Generator (..), Location, travel)
 import           Generator.Random (chooseRandom)
-import           Generator.Util   (addCell, getFreeDirections, travel, updateCell)
+import           Generator.Util   (addCell, getFreeDirections, updateCell)
 
 {- | 'growBranches' @g@ /"grows"/ 'Maze' inside 'Generator' @g@ using branching
 technique. It works by taking top element from @stack@ and growing it in random

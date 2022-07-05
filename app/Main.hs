@@ -6,5 +6,5 @@ import           Generator     (generateMaze)
 main :: IO ()
 main = do
     rng <- getStdGen
-    let maze = generateMaze rng 50 50
+    let maze = generateMaze rng 60 30
     print maze

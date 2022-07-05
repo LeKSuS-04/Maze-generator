@@ -4,26 +4,6 @@ import qualified Data.Map       as M
 
 import           Generator.Core
 
--- | 'oppositeDirectoin' @d@ gives direction, opposite to direction @d@
-oppositeDirection :: Direction -> Direction
-oppositeDirection d = case d of
-    TopD    -> BottomD
-    RightD  -> LeftD
-    BottomD -> TopD
-    LeftD   -> RightD
-
-{- | 'travel' @loc d@ returns new 'Location', which is result of moving in
-'Direction' @d@ from @loc@
--}
-travel :: Location -> Direction -> Location
-travel (Location x y) d = Location x' y'
-  where
-    (x', y') = case d of
-        TopD    -> (x    , y - 1)
-        RightD  -> (x + 1, y    )
-        BottomD -> (x    , y + 1)
-        LeftD   -> (x - 1, y    )
-
 {- | 'getNonWallDirections' @l m@ returns list of 'Direction's from 'Location' @l@ in
 'Maze' @m@ that do not lead into the wall (out of bounds)
 -}
