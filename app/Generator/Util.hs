@@ -2,7 +2,8 @@ module Generator.Util where
 
 import qualified Data.Map       as M
 
-import           Generator.Core
+import           Generator.Core (Cell (Cell, cellPaths), CellType (..), Direction (..),
+                                 Location (..), Maze (..), oppositeDirection, travel)
 
 {- | 'getNonWallDirections' @l m@ returns list of 'Direction's from 'Location' @l@ in
 'Maze' @m@ that do not lead into the wall (out of bounds)

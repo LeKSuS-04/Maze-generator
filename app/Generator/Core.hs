@@ -14,14 +14,34 @@ import           Data.Map   (Map)
 data CellType = Path | Start | End deriving (Show)
 
 -- Directions used for navigating through the maze
-data Direction = TopD | RightD | BottomD | LeftD deriving (Show, Eq)
+data Direction = TopD | RightD | BottomD | LeftD deriving (Eq)
+
+-- | 'oppositeDirectoin' @d@ gives direction, opposite to direction @d@
+oppositeDirection :: Direction -> Direction
+oppositeDirection d = case d of
+    TopD    -> BottomD
+    RightD  -> LeftD
+    BottomD -> TopD
+    LeftD   -> RightD
 
 -- Location in 'Maze'
 data Location = Location
     { lx :: Int
     , ly :: Int
     }
-    deriving (Show, Eq, Ord)
+    deriving (Eq, Ord)
+
+{- | 'travel' @loc d@ returns new 'Location', which is result of moving in
+'Direction' @d@ from @loc@
+-}
+travel :: Location -> Direction -> Location
+travel (Location x y) d = Location x' y'
+  where
+    (x', y') = case d of
+        TopD    -> (x    , y - 1)
+        RightD  -> (x + 1, y    )
+        BottomD -> (x    , y + 1)
+        LeftD   -> (x - 1, y    )
 
 -- Cell in 'Maze'
 data Cell = Cell
@@ -29,7 +49,6 @@ data Cell = Cell
     , cellType     :: CellType
     , cellPaths    :: [Direction]
     }
-    deriving (Show)
 
 -- Maze object
 data Maze = Maze
@@ -63,33 +82,11 @@ instance Show Maze where
                 (Just c@Cell{cellLocation=l, cellPaths=ds}, Just c'@Cell{cellLocation=l'}) ->
                     if any (\d -> travel l d == l') ds then 0 else v
 
-
 {- | Utility for generating mazes. Contains 'Maze' that is being built, random number
-generator and stack with 'Location' to keep track of cells that have not been used yet
+generator and stack with 'Location's to ensure no empty space exist in final maze
 -}
 data Generator = Generator
     { gStack :: [Location]
     , gRng   :: [Int]
     , gMaze  :: Maze
     }
-    deriving (Show)
-
--- | 'oppositeDirectoin' @d@ gives direction, opposite to direction @d@
-oppositeDirection :: Direction -> Direction
-oppositeDirection d = case d of
-    TopD    -> BottomD
-    RightD  -> LeftD
-    BottomD -> TopD
-    LeftD   -> RightD
-
-{- | 'travel' @loc d@ returns new 'Location', which is result of moving in
-'Direction' @d@ from @loc@
--}
-travel :: Location -> Direction -> Location
-travel (Location x y) d = Location x' y'
-  where
-    (x', y') = case d of
-        TopD    -> (x    , y - 1)
-        RightD  -> (x + 1, y    )
-        BottomD -> (x    , y + 1)
-        LeftD   -> (x - 1, y    )

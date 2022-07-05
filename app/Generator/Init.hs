@@ -1,14 +1,12 @@
 module Generator.Init (initGenerator) where
 
-import qualified Data.Map         as M
+import qualified Data.Map       as M
 
-import           Data.Map         (Map)
-import           Data.Maybe       (isNothing)
-import           System.Random    (StdGen, randoms)
+import           Data.Map       (Map)
+import           System.Random  (StdGen, randoms)
 
-import           Generator.Core   (Generator (..), Location (Location), Maze (..))
-import           Generator.Random (chooseRandom)
-import           Generator.Util   (addCell, getFreeDirections, updateCell)
+import           Generator.Core (Generator (..), Location (Location), Maze (..))
+import           Generator.Util (addCell)
 
 {- | 'initGenerator' @rng w h@ initializes 'Generator' with 'Maze' of width @w@ and
 height @h@. Also creates 'Cell' at 'Location' @(0, 0)@ that acts as a starting cell
